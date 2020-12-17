@@ -73,15 +73,29 @@
 </template>
 
 <script lang="ts">
+import ItemData from '@/model/ItemData'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class MenuBar extends Vue{
     showAdd () {
-
-    }
+      this.$store.state.transMemo = new ItemData(-1, 0)
+      this.$store.state.isShow = true
+    } 
     doFilter(cid: number): number {
-        return 1
+      if(cid === -1) {
+        // 返回全部
+        return this.$store.state.aHelper.memoList.length
+      } else {
+        return this.$store.state.aHelper.memoList.filter((ele: any) => {
+          console.log(ele.categoryId, 'cid', cid);
+          
+          return ele.categoryId === cid
+        }).length
+      }
+    }
+    doFilterByCateId (cid: number) {
+      this.$store.state.filterId = cid
     }
 }
 </script>

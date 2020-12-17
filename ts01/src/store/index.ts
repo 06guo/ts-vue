@@ -1,6 +1,7 @@
 // 导入vue和vuex
 import Vuex from 'vuex'
 import Vue from 'vue'
+import ActionHelper from './ActionHelper'
 
 // 注册vuex到vue里面
 Vue.use(Vuex)
@@ -10,14 +11,19 @@ Vue.use(Vuex)
 let store = new Vuex.Store({
     state: {
         title: '学习ts+vue',
-        loveCount: 1
+        isShow: false, // 是否展示新增弹框
+        transMemo: null,
+        filterId: 0, 
+        aHelper: new ActionHelper()
     },
     mutations: {
-        sayHi (state) {
-            console.log('学习吧' + state.title);
-        },
-        addLover (state) {
-            state.loveCount++
+        showEditMemo (state: any, editMemo: any) {
+            // 将传递的editmemo转成transMemo
+            console.log(editMemo, 'editMemo');
+            
+            state.transMemo = editMemo
+            // 显示编辑框
+            state.isShow = true
         }
     }
 })

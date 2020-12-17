@@ -1,5 +1,6 @@
 import DataHelper from './DataHelper'
 import ItemData from './../model/ItemData'
+import Category from './../model/CateEnum'
 class ActionHelper {
     // 负责数据处理
     dataHelper: DataHelper = new DataHelper('memoData', 'id');
@@ -25,7 +26,7 @@ class ActionHelper {
     // 新增笔记
     addItem(item: ItemData): number {
         item.id = this.dataHelper.addData(item)
-        this.memoList.push(item)
+        this.memoList.push(item)        
         this.dataHelper.saveData(this.memoList)
         return item.id
     }
@@ -55,6 +56,10 @@ class ActionHelper {
             // 重新保存到本地
             this.dataHelper.saveData(this.memoList)
         }
+    }
+    getCategoryName(cateId: Category): string {
+      const arrName = ['工作', '生活', '学习']
+      return arrName[cateId]
     }
 }
 export default ActionHelper

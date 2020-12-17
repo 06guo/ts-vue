@@ -22,7 +22,7 @@ class DataHelper {
     }
     // 输入存入本地
     saveData (arrData: Array<object>): void {
-        let str: string = JSON.stringify(arrData)
+        let str: string = JSON.stringify(arrData)        
         localStorage.setItem(this.dataKey, str)
     }
     // 新增数据
@@ -31,7 +31,7 @@ class DataHelper {
         if (dataArray === null) {
             dataArray = []
         }
-        // 自动生成主键值
+        // 自动生成主键值        
         let newId = dataArray.length > 0 ? dataArray[dataArray.length - 1][this.primaryKey] + 1 : 1
         newData[this.primaryKey] = newId
         dataArray.push(newData)
